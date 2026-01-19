@@ -52,7 +52,7 @@ RUN npm install -g \
     yarn
 
 # Install common Python packages
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --no-cache-dir --break-system-packages \
     virtualenv \
     pipenv \
     black \
@@ -90,6 +90,10 @@ ENV SHELL=/bin/bash
 # Create workspace directory structure
 RUN mkdir -p /home/coder/workspace && \
     mkdir -p /home/coder/.config
+
+# Install Claude Code extension (official Anthropic extension)
+RUN code-server --install-extension anthropic.claude-code || \
+    echo "Claude Code extension will be installed on first run"
 
 # Set working directory
 WORKDIR /home/coder/workspace
