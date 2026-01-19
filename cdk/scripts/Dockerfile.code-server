@@ -1,0 +1,102 @@
+FROM codercom/code-server:latest
+
+# Install development tools and utilities
+USER root
+
+# Update package lists
+RUN apt-get update
+
+# Install essential development tools
+RUN apt-get install -y \
+    tmux \
+    htop \
+    lsof \
+    net-tools \
+    curl \
+    wget \
+    git \
+    build-essential \
+    vim \
+    nano \
+    jq \
+    tree \
+    unzip \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 20 LTS
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python 3.11
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3.11-venv \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create symbolic links for python
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1 \
+    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+
+# Install global npm packages
+RUN npm install -g \
+    pm2 \
+    typescript \
+    ts-node \
+    nodemon \
+    npm-check-updates \
+    serve \
+    json-server \
+    yarn
+
+# Install common Python packages
+RUN pip3 install --no-cache-dir \
+    virtualenv \
+    pipenv \
+    black \
+    flake8 \
+    pylint \
+    pytest \
+    ipython \
+    requests \
+    httpx \
+    fastapi \
+    uvicorn \
+    python-dotenv
+
+# Install Docker CLI (for Docker-in-Docker capability)
+RUN curl -fsSL https://get.docker.com | sh
+
+# Install Docker Compose
+RUN COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d'"' -f4) && \
+    curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose
+
+# Create helpful aliases and environment setup
+RUN echo 'alias ll="ls -alh"' >> /etc/bash.bashrc && \
+    echo 'alias gs="git status"' >> /etc/bash.bashrc && \
+    echo 'alias ports="netstat -tulpn | grep LISTEN"' >> /etc/bash.bashrc && \
+    echo 'alias resources="htop"' >> /etc/bash.bashrc && \
+    echo 'export PS1="\[\e[32m\]\u@code-server\[\e[m\]:\[\e[34m\]\w\[\e[m\]\$ "' >> /etc/bash.bashrc
+
+# Switch back to coder user
+USER coder
+
+# Set default shell to bash
+ENV SHELL=/bin/bash
+
+# Create workspace directory structure
+RUN mkdir -p /home/coder/workspace && \
+    mkdir -p /home/coder/.config
+
+# Set working directory
+WORKDIR /home/coder/workspace
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8080/healthz || exit 1
+
+# Default command (code-server will be started by docker-compose)
+CMD ["--bind-addr", "0.0.0.0:8080", "--auth", "password"]

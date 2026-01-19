@@ -1,0 +1,231 @@
+version: '3.8'
+
+# Docker Compose file for Code-Server containers with AWS Bedrock integration
+# This file should be deployed to the EC2 instance after CDK deployment
+#
+# AWS Bedrock Authentication:
+# - No API keys needed - uses IAM role attached to EC2 instance
+# - Bedrock region: ap-southeast-1 (Singapore)
+# - Developers configure Claude Code extension to use Bedrock endpoint
+#
+# Port Allocation Guide:
+# =====================
+# Code-server UI:           8443-8450 (dev1-dev8) - Exposed via ALB
+# Frontend apps:            3000-3099 (use inside containers, forward via VS Code)
+# Node.js backends:         4000-4099 (use inside containers, forward via VS Code)
+# Python backends:          8000-8099 (use inside containers, forward via VS Code)
+# Mock/Test services:       5000-5099 (use inside containers, forward via VS Code)
+#
+# Shared Services (if added):
+# - PostgreSQL:             5432
+# - Redis:                  6379
+#
+# Note: Ports 3000-8099 are accessed via VS Code port forwarding feature.
+#       Only code-server UI ports (8443-8450) are directly exposed via ALB.
+#       Each developer can run multiple local dev servers on different ports.
+#
+# Usage: docker-compose up -d
+
+services:
+  code-server-dev1:
+    build:
+      context: .
+      dockerfile: Dockerfile.code-server
+    image: code-server-dev:latest
+    container_name: code-server-dev1
+    restart: unless-stopped
+    ports:
+      - "8443:8080"
+    environment:
+      - PASSWORD=${DEV1_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev1/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev1/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  code-server-dev2:
+    image: code-server-dev:latest
+    container_name: code-server-dev2
+    restart: unless-stopped
+    ports:
+      - "8444:8080"
+    environment:
+      - PASSWORD=${DEV2_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev2/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev2/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  code-server-dev3:
+    image: code-server-dev:latest
+    container_name: code-server-dev3
+    restart: unless-stopped
+    ports:
+      - "8445:8080"
+    environment:
+      - PASSWORD=${DEV3_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev3/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev3/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  code-server-dev4:
+    image: code-server-dev:latest
+    container_name: code-server-dev4
+    restart: unless-stopped
+    ports:
+      - "8446:8080"
+    environment:
+      - PASSWORD=${DEV4_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev4/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev4/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  code-server-dev5:
+    image: code-server-dev:latest
+    container_name: code-server-dev5
+    restart: unless-stopped
+    ports:
+      - "8447:8080"
+    environment:
+      - PASSWORD=${DEV5_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev5/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev5/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  code-server-dev6:
+    image: code-server-dev:latest
+    container_name: code-server-dev6
+    restart: unless-stopped
+    ports:
+      - "8448:8080"
+    environment:
+      - PASSWORD=${DEV6_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev6/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev6/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  code-server-dev7:
+    image: code-server-dev:latest
+    container_name: code-server-dev7
+    restart: unless-stopped
+    ports:
+      - "8449:8080"
+    environment:
+      - PASSWORD=${DEV7_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev7/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev7/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  code-server-dev8:
+    image: code-server-dev:latest
+    container_name: code-server-dev8
+    restart: unless-stopped
+    ports:
+      - "8450:8080"
+    environment:
+      - PASSWORD=${DEV8_PASSWORD}
+    volumes:
+      - /mnt/ebs-data/dev8/workspace:/home/coder/workspace
+      - /mnt/ebs-data/dev8/config:/home/coder/.local/share/code-server
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 3G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Users/yod/Develop/aws-aicode-webconsole/cdk/scripts/query-usage.sh)",
+      "Bash(git init)",
+      "Bash(git add .)"
+    ]
+  }
+}
