@@ -135,12 +135,11 @@ class MonitoringStack(Stack):
             )
 
             # Add EBS volume to backup selection
+            volume_arn = f"arn:aws:ec2:{self.region}:{self.account}:volume/{compute_stack.data_volume.volume_id}"
             backup_plan.add_selection(
                 "BackupSelection",
                 resources=[
-                    backup.BackupResource.from_arn(
-                        compute_stack.data_volume.volume_arn
-                    )
+                    backup.BackupResource.from_arn(volume_arn)
                 ],
             )
 
