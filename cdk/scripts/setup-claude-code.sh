@@ -39,15 +39,6 @@ EOF
 }
 EOF
 
-  # Create Claude Code env
-  cat >> "~/.bashrc" <<'EOF'
-export CLAUDE_CODE_USE_BEDROCK=1
-export ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0'
-EOF
-
-  echo "✓ Settings created for dev${i}"
-done
-
 curl -fsSL https://claude.ai/install.sh | bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
 
