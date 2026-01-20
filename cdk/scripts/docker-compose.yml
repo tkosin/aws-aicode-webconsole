@@ -5,9 +5,9 @@
 # - No API keys needed - uses IAM role attached to EC2 instance
 # - Bedrock region: ap-southeast-1 (Singapore)
 # - Claude Code extension automatically uses Bedrock via environment variables:
-#   * ANTHROPIC_BEDROCK=1
+#   * CLAUDE_CODE_USE_BEDROCK=1
 #   * AWS_REGION=ap-southeast-1
-#   * ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+#   * CLAUDE_CODE_USE_BEDROCK_AWS_REGION=ap-southeast-1
 #
 # Port Allocation Guide:
 # =====================
@@ -39,9 +39,8 @@ services:
       - "8443:8080"
     environment:
       - PASSWORD=${DEV1_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev1/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev1/config:/home/coder/.local/share/code-server
@@ -68,9 +67,8 @@ services:
       - "8444:8080"
     environment:
       - PASSWORD=${DEV2_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev2/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev2/config:/home/coder/.local/share/code-server
@@ -97,9 +95,8 @@ services:
       - "8445:8080"
     environment:
       - PASSWORD=${DEV3_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev3/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev3/config:/home/coder/.local/share/code-server
@@ -126,9 +123,8 @@ services:
       - "8446:8080"
     environment:
       - PASSWORD=${DEV4_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev4/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev4/config:/home/coder/.local/share/code-server
@@ -155,9 +151,8 @@ services:
       - "8447:8080"
     environment:
       - PASSWORD=${DEV5_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev5/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev5/config:/home/coder/.local/share/code-server
@@ -184,9 +179,8 @@ services:
       - "8448:8080"
     environment:
       - PASSWORD=${DEV6_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev6/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev6/config:/home/coder/.local/share/code-server
@@ -213,9 +207,8 @@ services:
       - "8449:8080"
     environment:
       - PASSWORD=${DEV7_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev7/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev7/config:/home/coder/.local/share/code-server
@@ -242,9 +235,8 @@ services:
       - "8450:8080"
     environment:
       - PASSWORD=${DEV8_PASSWORD}
-      - ANTHROPIC_BEDROCK=1
-      - AWS_REGION=ap-southeast-1
-      - ANTHROPIC_BEDROCK_AWS_REGION=ap-southeast-1
+      - CLAUDE_CODE_USE_BEDROCK=1
+      - ANTHROPIC_MODEL='global.anthropic.claude-sonnet-4-5-20250929-v1:0
     volumes:
       - /mnt/ebs-data/dev8/workspace:/home/coder/workspace
       - /mnt/ebs-data/dev8/config:/home/coder/.local/share/code-server
