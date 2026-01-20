@@ -107,7 +107,7 @@ You can choose from these models in Bedrock (Singapore region):
 | `anthropic.claude-3-sonnet-20240229-v1:0` | Balanced (recommended) | $3.00 / $15.00 |
 | `anthropic.claude-3-5-sonnet-20240620-v1:0` | Most capable Sonnet | $3.00 / $15.00 |
 | `anthropic.claude-3-opus-20240229-v1:0` | Most capable, expensive | $15.00 / $75.00 |
-| `us.anthropic.claude-sonnet-4-5-20250929-v1:0` | Latest Sonnet 4.5 | $3.00 / $15.00 |
+| `global.anthropic.claude-sonnet-4-5-20250929-v1:0` | Latest Sonnet 4.5 (Cross-Region) | $3.00 / $15.00 |
 
 ### Changing Models
 

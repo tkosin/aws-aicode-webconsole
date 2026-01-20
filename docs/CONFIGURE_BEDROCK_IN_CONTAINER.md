@@ -185,9 +185,9 @@ aws bedrock list-foundation-models --region us-east-1
 
 | Model | Model ID | Use Case |
 |-------|----------|----------|
-| **Claude Opus 4.5** | `anthropic.claude-opus-4-5-20251101-v1:0` | Most capable |
-| **Claude Sonnet 4.5** | `anthropic.claude-sonnet-4-5-20250929-v1:0` | Balanced |
-| **Claude Haiku 4.5** | `anthropic.claude-haiku-4-5-20251001-v1:0` | Fast & cheap |
+| **Claude Opus 4.5** | `global.anthropic.claude-opus-4-5-20251101-v1:0` | Most capable (Cross-Region) |
+| **Claude Sonnet 4.5** | `global.anthropic.claude-sonnet-4-5-20250929-v1:0` | Balanced (Cross-Region) |
+| **Claude Haiku 4.5** | `global.anthropic.claude-haiku-4-5-20251001-v1:0` | Fast & cheap (Cross-Region) |
 | **Claude 3.5 Haiku** | `anthropic.claude-3-5-haiku-20241022-v1:0` | Previous gen |
 | **Claude 3 Haiku** | `anthropic.claude-3-haiku-20240307-v1:0` | Legacy |
 

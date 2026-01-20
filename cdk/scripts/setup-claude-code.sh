@@ -35,7 +35,7 @@ EOF
 {
   "provider": "bedrock",
   "region": "ap-southeast-1",
-  "model": "anthropic.claude-sonnet-4-5-20250929-v1:0"
+  "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0"
 }
 EOF
 

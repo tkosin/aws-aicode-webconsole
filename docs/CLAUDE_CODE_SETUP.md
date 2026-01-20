@@ -200,17 +200,17 @@ aws bedrock list-foundation-models \
 ## Model ที่ใช้ได้
 
 ปัจจุบันตั้งค่าให้ใช้:
-- **Model**: `anthropic.claude-sonnet-4-5-20250929-v1:0` (Claude Sonnet 4.5)
+- **Model**: `global.anthropic.claude-sonnet-4-5-20250929-v1:0` (Claude Sonnet 4.5 - Cross-Region)
 - **Region**: `ap-southeast-1` (Singapore)
 
-Models อื่นที่ใช้ได้ใน Bedrock:
-- `anthropic.claude-opus-4-5-20251101-v1:0` (Claude Opus 4.5)
-- `anthropic.claude-sonnet-4-20250514-v1:0` (Claude Sonnet 4)
-- `anthropic.claude-3-5-sonnet-20240620-v1:0` (Claude 3.5 Sonnet)
+Models อื่นที่ใช้ได้ใน Bedrock (Cross-Region):
+- `global.anthropic.claude-opus-4-5-20251101-v1:0` (Claude Opus 4.5)
+- `global.anthropic.claude-haiku-4-5-20251001-v1:0` (Claude Haiku 4.5)
+- `anthropic.claude-3-5-sonnet-20240620-v1:0` (Claude 3.5 Sonnet - Regional)
 
 เปลี่ยน model ได้ใน `setup-claude-code.sh` ที่บรรทัด:
 ```json
-"claude-code.model": "anthropic.claude-sonnet-4-5-20250929-v1:0"
+"model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0"
 ```
 
 ## หมายเหตุสำคัญ
