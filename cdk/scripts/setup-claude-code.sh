@@ -40,8 +40,7 @@ EOF
 EOF
 
 curl -fsSL https://claude.ai/install.sh | bash
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
-
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 echo ""
 echo "=== Setup Complete ==="
 echo ""
